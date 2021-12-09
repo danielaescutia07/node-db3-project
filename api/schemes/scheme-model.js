@@ -111,6 +111,7 @@ async function findById(scheme_id) { // EXERCISE B
           })
         }
       })
+      return result
 }
 
 async function findSteps(scheme_id) { // EXERCISE C
@@ -165,7 +166,7 @@ function addStep(scheme_id, step) { // EXERCISE E
     scheme_id
   })
     .then(() => {
-      return db('steps')
+      return db('steps as st')
       .join('schemes as sc', 'sc.scheme_id', 'st.scheme_id')
       .select('step_id', 'step_number', 'instructions', 'scheme_name')
       .orderBy('step_number')
